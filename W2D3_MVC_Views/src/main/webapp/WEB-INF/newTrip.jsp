@@ -19,38 +19,36 @@
 </head>
 <body>
 <div class="container">
-	<h1>Hello</h1>
-	
-	
-	<c:out value="${tripList }"/>
+	<h1>Add a new trip!</h1>
+	<a href="/trips">back</a>
 	<hr />
 	
-	<table class="table">
-		<thead>
-			<tr>
-				<th>id</th>
-				<th>location</th>
-				<th>planner</th>
-				<th>trip length</th>
-				<th>ACTIONS</th>
-			</tr>
-		</thead>
-		<tbody>
-				<c:forEach var="trip" items="${tripList }">
-					<tr>
-						<td>${trip.id }</td>
-						<td>
-						<a href="/trips/${trip.id }"> ${trip.location} </a>
-						
-						</td>
-						<td>${trip.owner }</td>
-						<td>${trip.tripDuration }</td>
-						<td>---</td>
-					</tr>
-				</c:forEach>
-			</tbody>
-
-	</table>
+	<form:form action="/trips/new" method="POST" modelAttribute="newTrip">
+		<div>
+			<form:label path="location">location</form:label>
+			<form:input path="location" class="form-control"/>
+			<form:errors path="location" style="color:red"/>
+		</div>
+		<div>
+			<form:label path="tripDuration">tripDuration</form:label>
+			<form:input type="number" step="1" path="tripDuration" class="form-control" />
+			<form:errors path="tripDuration" class="err"/>
+		</div>
+		<div>
+			<form:label path="description">description</form:label>
+			<form:textarea path="description" class="form-control"/>
+			<form:errors path="description" class="err"/>
+		</div>
+		<div>
+			<form:label path="owner">owner</form:label>
+			<form:input path="owner" class="form-control"/>
+			<form:errors path="owner" class="err"/>
+		</div>
+		
+		<p></p>
+		<input type="submit" value="create!" class="btn btn-primary" />
+	
+	</form:form>
 	
 	
 	
@@ -67,3 +65,5 @@
 </div>
 </body>
 </html>
+
+
